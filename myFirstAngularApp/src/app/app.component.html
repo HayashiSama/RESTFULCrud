@@ -1,0 +1,45 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<div style="text-align:center" class="container">
+
+  <h1>
+    Welcome to {{ title }}!
+
+  </h1>
+
+
+<h5> New Task </h5>
+<form (submit)="submitTask()">
+    <!-- use the json pipe to see how newTask changes in real time -->
+    
+    <input type="text" name="newTask.title" [(ngModel)]="newTask.title" class='form-control'>
+    <input type="text" name="newTask.description" [(ngModel)]="newTask.description" class='form-control'>
+    <input type="submit" value="Create Task" class='form-control'>
+</form>
+
+<div *ngIf="showEdit">
+  <hr>
+  <h5> Edit Task </h5>
+  <form (submit)="saveTask()">
+    <input type="text" name="editedTask.title" [(ngModel)]="oneTask.title" class='form-control'>
+    <input type="text" name="editedTask.description" [(ngModel)]="oneTask.description" class='form-control'>
+    <input type="submit" value="Save Task" class='form-control'>
+  </form>
+</div>
+<hr>
+
+<h5> Task List </h5>
+
+<div *ngFor="let task of tasks">
+  {{ task.title }} - {{task._id}}
+  <button class = "btn btn-info" (click)="editTask(task)"> EDIT </button>
+  <button class = "btn btn-info" (click)="deleteTask(task)"> DELETE </button>
+</div>
+
+
+<!-- <input #taskid type="text" name="id" id="inputid"> -->
+<!-- <button class="btn btn-info" (click)="getOneTask(taskid.value)"> Click to get one task </button> -->
+</div>
+
